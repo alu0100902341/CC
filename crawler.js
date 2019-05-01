@@ -25,6 +25,8 @@ request(pageToVisit, (error, response, body) => {
 const search = ($, word) => {
   let bodyText = $("html > body").text(); // parent > child
   if (bodyText.toLowerCase().indexOf(word.toLowerCase()) !== -1) {
+    
+    //cconsole.log(bodyText);
     console.log(`${word} found!`);
     return true;
   }
@@ -37,17 +39,21 @@ const collectLinks = $ => {
   let allAbsoluteLinks = [];
 
   let relativeLinks = $("a[href^='/']");
-  relativeLinks.each(i => {
+  //console.log(`${relativeLinks}`);
+  relativeLinks.each( () => {
     allRelativeLinks.push($(this).attr("href"));
-    console.log(`${allRelativeLinks[i]}`);
+    
   });
 
   let absoluteLinks = $("a[href^='http']");
-  absoluteLinks.each(i => {
+  //console.log(`${absoluteLinks}`);
+  absoluteLinks.each( () => {
     allAbsoluteLinks.push($(this).attr("href"));
-    console.log(`${allAbsoluteLinks[i]}`);
+    
   });
 
   console.log(`Found ${allRelativeLinks.length} relative links`);
+  console.log(`${allRelativeLinks}`);
   console.log(`Found ${allAbsoluteLinks.length} absolute links`);
+  console.log(`${absoluteLinks}`);
 };
